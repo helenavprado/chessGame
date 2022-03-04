@@ -28,10 +28,21 @@ public class Pawn extends Piece {
 
     @Override
     public String toString() {
-        return "Pawn{" +
-                "value=" + getValue() +
-                ", isWhite=" + isWhite() +
-                '}';
+        if (newPiece == null) {
+            return "Pawn{" +
+                    "promoted=" + promoted +
+                    ", value=" + getValue() +
+                    ", isWhite=" + isWhite() +
+                    '}';
+        } else {
+            return "Pawn{" +
+                    "promoted=" + promoted +
+                    ", newPiece=" + newPiece +
+                    ", value=" + getValue() +
+                    ", isWhite=" + isWhite() +
+                    '}';
+        }
+
     }
 
     @Override

@@ -1,4 +1,5 @@
 package chess;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import java.util.ArrayList;
@@ -6,12 +7,14 @@ import java.util.ArrayList;
 public class Driver {
 
     public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
         ArrayList<Piece> chessPiece = new ArrayList<>();
 
         Bishop bishop = new Bishop(3, true);
         chessPiece.add(bishop);
 
         Pawn pawn = new Pawn(1, false);
+        System.out.println(pawn);
         chessPiece.add(pawn);
 
         Knight knight = new Knight(2, true);
@@ -41,6 +44,40 @@ public class Driver {
         System.out.println(p1.equals(p5));
         System.out.println(p2.equals(p3));
         System.out.println(p4.equals(p5));
+
+        System.out.println("\n+====== \"Congrats! You can promote your pawn. Choose one of the following: \" =====+");
+        System.out.println("| [1] Queen  |");
+        System.out.println("| [2] Rook   |");
+        System.out.println("| [3] Knight |");
+        System.out.println("| [4] Bishop |");
+        System.out.println("+=========================+");
+
+
+        try {
+            int userChoice = userInput.nextInt();
+            if (userChoice == 1) {
+                Queen queenPromote = new Queen(9, false);
+                pawn.promote(queenPromote);
+            } else if (userChoice == 2) {
+                Rook rookPromote = new Rook(5, false);
+                pawn.promote(rookPromote);
+            } else if (userChoice == 3) {
+                Knight knightPromote = new Knight(2, false);
+                pawn.promote(knightPromote);
+            } else if (userChoice == 4) {
+                Bishop bishopPromote = new Bishop(3, false);
+                pawn.promote(bishopPromote);
+            } else {
+                System.out.println("Insert a valid number");
+            }
+            System.out.println(pawn);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Bye!");
+        }
+
+
     }
+
 }
+
 
